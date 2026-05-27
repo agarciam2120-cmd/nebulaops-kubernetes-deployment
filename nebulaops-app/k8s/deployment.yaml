@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nebulaops-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nebulaops-app
+  template:
+    metadata:
+      labels:
+        app: nebulaops-app
+    spec:
+      containers:
+      - name: nebulaops-container
+        image: agarciam21/nebulaops:v1
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "250m"
